@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:10 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/28 00:25:24 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/28 06:19:34 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void   mandelbrot(fractol_s *fractol)
+void	mandelbrot(fractol_s *fractol)
 {
-    printf("mandelbrot\n");
-} 
+	printf("mandelbrot\n");
+}

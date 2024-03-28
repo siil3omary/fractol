@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:39 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/28 00:25:18 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/28 06:19:39 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void   julia(fractol_s *fractol)
+void	julia(fractol_s *fractol)
 {
-    printf("julia\n");
+	printf("julia\n");
 }

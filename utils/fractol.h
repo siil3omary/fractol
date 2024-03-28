@@ -1,13 +1,13 @@
 #if !defined(FRACTOL_H)
 # define FRACTOL_H
 
+# include "../minilibx_macos/mlx.h"
 # include <math.h>
-# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 // cc -I /usr/X11/include -g -L /usr/X11/lib fractol.c -lX11 -lmlx -lXext -framework OpenGL -framework AppKit
-	
-//
+
+
 typedef struct s_fractol
 {
 	void	*mlx;
