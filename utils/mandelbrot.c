@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:10 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/30 01:00:01 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/30 02:37:14 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	drawit(fractol_s *fractol)
 	i = 0;
 	fractol->zr = 0.0;
 	fractol->zi = 0.0;
+	fractol->cr = scalefractol(fractol->x, 0, 800, -2, 2) / fractol->zoom;
+	fractol->ci = scalefractol(fractol->y, 0, 800, -2, 2) / fractol->zoom;
 	while (i < fractol->max_iter && is_in_range(fractol->zr, fractol->zi))
 	{
 		fractol->tmp = ((fractol->zr * fractol->zr) - (fractol->zi
@@ -52,14 +54,13 @@ void	drawit(fractol_s *fractol)
 		i++;
 	}
 	if (i == fractol->max_iter)
-	{
-		my_mlx_pixel_put(fractol, fractol->x, fractol->y, 0xFD00FF);
-	}
+		my_mlx_pixel_put(fractol, fractol->x, fractol->y, 0);
 	else
-		my_mlx_pixel_put(fractol, fractol->x, fractol->y,scalefractol(i,  0 ,fractol->max_iter , 0,0xFD00FF) );
+		my_mlx_pixel_put(fractol, fractol->x, fractol->y, scalefractol(i * 1.01,
+				fractol->color, fractol->max_iter, 0, 0x0A75AD));
 }
 
-void	draw_mandelbrot(fractol_s *fractol)
+int	draw_mandelbrot(fractol_s *fractol)
 {
 	fractol->x = 0;
 	while (fractol->x < WH)
@@ -67,24 +68,28 @@ void	draw_mandelbrot(fractol_s *fractol)
 		fractol->y = 0;
 		while (fractol->y < WH)
 		{
-			fractol->cr = scalefractol(fractol->x, 0, 800, -2, 2);
-			fractol->ci = scalefractol(fractol->y, 0, 800, -2, 2);
 			drawit(fractol);
 			fractol->y++;
 		}
 		fractol->x++;
 	}
+	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img, 0, 0);
+	return (0);
 }
 void	mandelbrot(fractol_s *fractol)
 {
-	fractol->max_iter = 1500;
 	fractol->mlx = mlx_init();
-	fractol->win = mlx_new_window(fractol->mlx, 800, 800, "Hello world!");
-	fractol->img.img = mlx_new_image(fractol->mlx, 800, 800);
+	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Mandelbrot");
+	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);
 	fractol->img.addr = mlx_get_data_addr(fractol->img.img,
 			&fractol->img.bits_per_pixel, &fractol->img.line_length,
 			&fractol->img.endian);
-	draw_mandelbrot(fractol);
-	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img, 0, 0);
+	fractol->zoom = 1;
+	fractol->color = 0x000000;
+	fractol->max_iter = 330;
+	mlx_key_hook(fractol->win, key_hook, fractol);
+	// mlx_hook(fractol->win, 2, 1L << 0, key_hook, &fractol);
+	draw_mandelbrot(fractol);	
+	// mlx_loop_hook(fractol->mlx, draw_mandelbrot, &fractol);
 	mlx_loop(fractol->mlx);
 }

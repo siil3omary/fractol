@@ -37,5 +37,8 @@ typedef struct s_fractol
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		mandelbrot(fractol_s *fractol);
 void		julia(fractol_s *fractol);
+int	key_hook(int keycode, fractol_s *vars);
+void	drawit(fractol_s *fractol);
+int	draw_mandelbrot(fractol_s *fractol);	
 
 #endif // FRACTOL_H
