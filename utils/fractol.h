@@ -23,13 +23,13 @@ typedef struct s_fractol
 	double	zoom;
 	double	shift_y;
 	double	shift_x;
-	double zr;
-	double zi;
-	double cr;
-	double ci;
-	int x;
-	int y;
-	double tmp;
+	double	zr;
+	double	zi;
+	double	cr;
+	double	ci;
+	int		x;
+	int		y;
+	double	tmp;
 	int		max_iter;
 	int		color;
 	void	*mlx;
@@ -37,10 +37,13 @@ typedef struct s_fractol
 }			fractol_s;
 
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			mouse_hook(int button, int x, int y, fractol_s *fractol);
 void		mandelbrot(fractol_s *fractol);
 void		julia(fractol_s *fractol);
-int	key_hook(int keycode, fractol_s *vars);
-void	drawit(fractol_s *fractol);
-int	draw_mandelbrot(fractol_s *fractol);	
+int			key_hook(int keycode, fractol_s *vars);
+void		drawit(fractol_s *fractol);
+int			draw_mandelbrot(fractol_s *fractol);
+double		scalefractol(int value, int oldmin, int oldmax, int newmin,
+				int newmax);
 
 #endif // FRACTOL_H

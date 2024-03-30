@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:10 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/30 03:03:54 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/30 03:41:55 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	drawit(fractol_s *fractol)
 	i = 0;
 	fractol->zr = 0.0;
 	fractol->zi = 0.0;
-	fractol->cr = scalefractol(fractol->x, 0, 800, -2, 2) / fractol->zoom + fractol->shift_x;
-	fractol->ci = scalefractol(fractol->y, 0, 800, -2, 2) / fractol->zoom + fractol->shift_y;
+	fractol->cr = scalefractol(fractol->x, 0, 800, -2, 2) / fractol->zoom
+		+ fractol->shift_x;
+	fractol->ci = scalefractol(fractol->y, 0, 800, -2, 2) / fractol->zoom
+		+ fractol->shift_y;
 	while (i < fractol->max_iter && is_in_range(fractol->zr, fractol->zi))
 	{
 		fractol->tmp = ((fractol->zr * fractol->zr) - (fractol->zi
@@ -86,12 +88,13 @@ void	mandelbrot(fractol_s *fractol)
 			&fractol->img.endian);
 	fractol->zoom = 1;
 	fractol->color = 0x000000;
-	fractol->max_iter = 330;
-    fractol->shift_x = 0.0;
-    fractol->shift_y = 0.0;
+	fractol->max_iter = 30;
+	fractol->shift_x = 0.0;
+	fractol->shift_y = 0.0;
 	mlx_key_hook(fractol->win, key_hook, fractol);
+	mlx_mouse_hook(fractol->win, mouse_hook, &fractol);
 	// mlx_hook(fractol->win, 2, 1L << 0, key_hook, &fractol);
-	draw_mandelbrot(fractol);	
+	draw_mandelbrot(fractol);
 	// mlx_loop_hook(fractol->mlx, draw_mandelbrot, &fractol);
 	mlx_loop(fractol->mlx);
 }

@@ -6,17 +6,26 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 01:13:52 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/30 03:08:19 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/30 03:45:44 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	key_hook(int keycode, fractol_s *fractol)
+int	mouse_hook(int button, int x, int y, fractol_s *fractol)
 {
-	printf("keycode: %d\n", keycode);
+    printf("button: %d\n", button);
+    printf("x: %d\n", x);
+}
+
+int	key_hook(int keycode, fractol_s *fractol)
+{   
 	if (keycode == 53)
 		exit(0);
+	if (keycode == 4)
+		fractol->zoom *= 1.1;
+	if (keycode == 5)
+		fractol->zoom /= 1.1;
 	if (keycode == 69)
 		fractol->max_iter += 10;
 	if (keycode == 78)
@@ -37,8 +46,6 @@ int	key_hook(int keycode, fractol_s *fractol)
 		fractol->zoom /= 1.1;
 	if (keycode == 49)
 		fractol->color += 0x0000FF;
-	printf("max_iter: %d\n", fractol->max_iter);
 	draw_mandelbrot(fractol);
-
 	return (0);
 }
