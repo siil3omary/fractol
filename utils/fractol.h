@@ -21,6 +21,8 @@ typedef struct s_fractol
 {
 	t_img	img;
 	double	zoom;
+	double	shift_y;
+	double	shift_x;
 	double zr;
 	double zi;
 	double cr;
