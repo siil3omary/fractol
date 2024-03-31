@@ -1,54 +1,51 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 05:43:00 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/29 19:50:12 by aelomari         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
- 
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-int main() {
-    // Define constants
-    double Z_real, Z_imag; // Real and imaginary parts of Z
-    double C_real = 0, C_imag = 0.65; // Real and imaginary parts of C
-    int maxIterations = 1000; // Maximum number of iterations
-    int n;
-    
-    // Start with an initial value of Z (for example, Z = 0)
-    Z_real = 0;
-    Z_imag = 0;
-    
-    // Iterate the formula Z_{n+1} = Z_{n}^2 + C
-    for (n = 0; n < maxIterations; ++n) {
-        // Calculate the next iteration
-        double Z_real_next = Z_real * Z_real - Z_imag * Z_imag + C_real;
-        double Z_imag_next = 2 * Z_real * Z_imag + C_imag;
-        
-        // Update Z
-        Z_real = Z_real_next;
-        Z_imag = Z_imag_next;
-        
-        // Calculate the magnitude of Z
-        double magnitude = sqrt(Z_real * Z_real + Z_imag * Z_imag);
-        
-        // Check if the magnitude of Z exceeds a certain threshold (e.g., 2)
-        if (magnitude > 2.0) {
-            printf("Diverges after %d iterations.\n", n);
-            break;
-        }
-    }
-    
-    // If the loop completes without diverging, Z may be within the Mandelbrot set
-    if (n == maxIterations) {
-        printf("Likely within the Mandelbrot set.\n");
-    }
-    
-    return 0;
+int	ft_isdigit(char c)
+{
+	printf("%c", c);
+	if (c >= '0' && c <= '9')
+		return (1);
+	printf("e");
+	exit(EXIT_FAILURE);
+}
+
+double	ft_atod(char *str)
+{
+	double	result;
+	double	part;
+	double	sign;
+	int		i;
+	double	place;
+
+	i = 0;
+	part = 0.0;
+	sign = 1;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i] == '-')
+			sign = -1;
+	if (!str[i])
+		exit(1);
+	while (str[i] && str[i] != '.' && ft_isdigit(str[i]))
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	if (str[i++] == '\0')
+		exit(EXIT_FAILURE);
+	place = 0.1;
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		part += (str[i] - '0') * place;
+		place /= 10;
+		i++;
+	}
+	result += part;
+	return (sign * (result + part));
+}
+int	main(int ac, char **av)
+{
+	printf("%f", ft_atod("55.45"));
+	return (0);
 }
