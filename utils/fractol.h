@@ -39,7 +39,13 @@ typedef struct s_fractol
 	void	*win;
 }			fractol_s;
 
+void		julia(fractol_s *fractol, double cr, double ci);
 double		ft_atod(char *str);
+int			ft_isdigit(char c);
+int			ft_isspace(int c);
+int			draw_julia(fractol_s *fractol);
+void		brurningship(fractol_s *fractol);
+int			draw_brurningship(fractol_s *fractol);
 double		scalefractol(int value, int oldmin, int oldmax, int newmin,
 				int newmax);
 int			ft_isdigit(char c);

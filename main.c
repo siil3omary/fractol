@@ -4,13 +4,19 @@
 
 int	ft_isdigit(char c)
 {
-	printf("%c", c);
 	if (c >= '0' && c <= '9')
 		return (1);
-	printf("e");
 	exit(EXIT_FAILURE);
 }
 
+int ft_isspace(int c)
+{
+    if (c == ' ' || (c >= 9 && c <= 13))
+    {
+        return(1);
+    }
+    return(0);
+}
 double	ft_atod(char *str)
 {
 	double	result;
@@ -19,33 +25,34 @@ double	ft_atod(char *str)
 	int		i;
 	double	place;
 
-	i = 0;
+	result = 0.0;
 	part = 0.0;
 	sign = 1;
+	i = 0;
+	place = 0.1;
+	while (ft_isspace(str[i]))
+		i++;
 	if (str[i] == '-' || str[i] == '+')
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			sign = -1;
-	if (!str[i])
-		exit(1);
 	while (str[i] && str[i] != '.' && ft_isdigit(str[i]))
 	{
 		result = result * 10 + str[i] - '0';
 		i++;
 	}
-	if (str[i++] == '\0')
-		exit(EXIT_FAILURE);
-	place = 0.1;
+	if (str[i] == '.')
+		i++;
 	while (str[i] && ft_isdigit(str[i]))
 	{
-		part += (str[i] - '0') * place;
+		part = part + (str[i] - '0') * place;
 		place /= 10;
 		i++;
 	}
 	result += part;
-	return (sign * (result + part));
+	return (sign * result);
 }
 int	main(int ac, char **av)
 {
-	printf("%f", ft_atod("55.45"));
+	printf("%f\n%f", ft_atod(av[1]), ft_atod(av[2]));
 	return (0);
 }

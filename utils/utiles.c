@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 01:13:52 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/30 23:24:11 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:57:07 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	mouse_hook(int button, int x, int y, fractol_s *fractol)
 			- scalefractol(x, 0, WH, -2, 2);
 		fractol->shift_y -= (mouse_y * fractol->zoom / old_zoom)
 			- scalefractol(y, 0, WH, -2, 2);
-		draw_mandelbrot(fractol);
+		draw_julia(fractol);
 	}
 	if (button == 5)
 	{
@@ -37,7 +37,7 @@ int	mouse_hook(int button, int x, int y, fractol_s *fractol)
 			- scalefractol(x, 0, WH, -2, 2);
 		fractol->shift_y -= (mouse_y * fractol->zoom / old_zoom)
 			- scalefractol(y, 0, WH, -2, 2);
-		draw_mandelbrot(fractol);
+		draw_julia(fractol);
 	}
 	return (0);
 }
@@ -73,9 +73,9 @@ int	key_hook(int keycode, fractol_s *fractol)
 		fractol->zoom *= 1.1;
 	if (keycode == 5)
 		fractol->zoom /= 1.1;
-	if (keycode == 69)
+	if (keycode == 69 || keycode == 18)
 		fractol->max_iter += 10;
-	if (keycode == 78)
+	if (keycode == 78 || keycode == 19)
 		fractol->max_iter -= 10;
 	if (keycode == 123)
 		fractol->shift_x += 0.1;
@@ -93,25 +93,64 @@ int	key_hook(int keycode, fractol_s *fractol)
 		fractol->zoom /= 1.1;
 	if (keycode == 49)
 		fractol->color += 0x0000FF;
-	draw_mandelbrot(fractol);
+        printf("\n \t %d", fractol->color);
+	draw_julia(fractol);
 	return (0);
 }
 void	init(fractol_s *fractol)
 {
 	fractol->zoom = 1;
-	fractol->color = 0x000000;
-	fractol->max_iter = 10;
+	fractol->color = 510;
+	fractol->max_iter = 380;
 	fractol->shift_x = 0.0;
 	fractol->shift_y = 0.0;
+}
+int	ft_isdigit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	exit(EXIT_FAILURE);
+}
+int ft_isspace(int c)
+{
+    if (c == ' ' || (c >= 9 && c <= 13))
+    {
+        return(1);
+    }
+    return(0);
 }
 
 double	ft_atod(char *str)
 {
-	double results;
-	double sign;
-	
-}
-int	ft_isdigit(char c)
-{
-	return (c >= '0' && c <= '9');
+	double	result;
+	double	part;
+	double	sign;
+	int		i;
+	double	place;
+
+	result = 0.0;
+	part = 0.0;
+	sign = 1;
+	i = 0;
+	place = 0.1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] && str[i] != '.' && ft_isdigit(str[i]))
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	if (str[i] == '.')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		part = part + (str[i] - '0') * place;
+		place /= 10;
+		i++;
+	}
+	result += part;
+	return (sign * result);
 }

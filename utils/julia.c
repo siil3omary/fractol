@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:39 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/30 22:56:38 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:59:05 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ void	julia(fractol_s *fractol, double cr, double ci)
 	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Julia Set");
 	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);
 	fractol->img.addr = mlx_get_data_addr(fractol->img.img,
-			&fractol->img.bits_per_pixel, &fractol->img.line_length,
-			&fractol->img.endian);
+											&fractol->img.bits_per_pixel,
+											&fractol->img.line_length,
+											&fractol->img.endian);
 	init(fractol);
+    printf("%f\t %f" , cr, ci);
+	fractol->ci = ci;
+	fractol->cr = cr;
 	mlx_mouse_hook(fractol->win, mouse_hook, fractol);
 	mlx_hook(fractol->win, 2, 1L << 0, key_hook, fractol);
 	draw_julia(fractol);
@@ -63,8 +67,8 @@ static void	drawit(fractol_s *fractol)
 		i++;
 	}
 	if (i == fractol->max_iter)
-		my_mlx_pixel_put(fractol, fractol->x, fractol->y, 0);
+		my_mlx_pixel_put(fractol, fractol->x, fractol->y, 0xFFFFFF);
 	else
 		my_mlx_pixel_put(fractol, fractol->x, fractol->y, scalefractol(i * 1.01,
-				fractol->color, fractol->max_iter, 0, 0x0A75AD));
+					fractol->color, fractol->max_iter, 0, 0xFFFFFF));
 }
