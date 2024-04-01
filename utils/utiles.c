@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 01:13:52 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/31 23:57:07 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:16:38 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,23 @@ int	key_hook(int keycode, fractol_s *fractol)
 		fractol->zoom /= 1.1;
 	if (keycode == 49)
 		fractol->color += 0x0000FF;
-        printf("\n \t %d", fractol->color);
-	draw_julia(fractol);
+	if (keycode == 15)
+		init(fractol);
+	if(keycode == 38){
+		fractol->name = "julia";
+		draw_julia(fractol);
+	}
+	if(keycode == 46){
+		fractol->name = "mandelbrot";
+		draw_mandelbrot(fractol);
+	}
+	if(keycode == 11){
+		fractol->name = "brurningship";
+		draw_brurningship(fractol);
+	}
+		
+	printf("\n \t %d", keycode);
+
 	return (0);
 }
 void	init(fractol_s *fractol)
@@ -111,13 +126,13 @@ int	ft_isdigit(char c)
 		return (1);
 	exit(EXIT_FAILURE);
 }
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
-    if (c == ' ' || (c >= 9 && c <= 13))
-    {
-        return(1);
-    }
-    return(0);
+	if (c == ' ' || (c >= 9 && c <= 13))
+	{
+		return (1);
+	}
+	return (0);
 }
 
 double	ft_atod(char *str)
