@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:16:22 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 22:08:07 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:32:00 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char *str;
-	unsigned char *ptr;
+	unsigned char	*str;
+	unsigned char	*ptr;
 
 	str = (unsigned char *)s1;
 	ptr = (unsigned char *)s2;

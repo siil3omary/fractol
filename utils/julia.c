@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:39 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 22:22:49 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:30:17 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	julia(t_fractol *fractol, double cr, double ci)
 	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Julia Set");
 	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);
 	fractol->img.addr = mlx_get_data_addr(fractol->img.img,
-											&fractol->img.bits_per_pixel,
-											&fractol->img.line_length,
-											&fractol->img.endian);
+			&fractol->img.bits_per_pixel,
+			&fractol->img.line_length,
+			&fractol->img.endian);
 	init(fractol);
 	mlx_mouse_hook(fractol->win, mouse_hook, fractol);
 	mlx_hook(fractol->win, 2, 1L << 0, key_hook, fractol);
@@ -48,14 +48,13 @@ int	draw_julia(t_fractol *fractol)
 
 static void	drawit(t_fractol *fractol)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	fractol->zr = (scalefractol(fractol->x, 0, 800, -2, 2) / fractol->zoom)
 		+ fractol->shift_x;
 	fractol->zi = (scalefractol(fractol->y, 0, 800, -2, 2) / fractol->zoom)
 		+ fractol->shift_y;
-
 	while (i < fractol->max_iter && is_in_range(fractol->zr, fractol->zi))
 	{
 		fractol->tmp = ((fractol->zr * fractol->zr) - (fractol->zi
@@ -65,8 +64,12 @@ static void	drawit(t_fractol *fractol)
 		i++;
 	}
 	if (i == fractol->max_iter)
+	{
 		my_mlx_pixel_put(fractol, fractol->x, fractol->y, 0xFFFFFF);
+	}
 	else
+	{
 		my_mlx_pixel_put(fractol, fractol->x, fractol->y, scalefractol(i * 1.01,
-					fractol->color, fractol->max_iter, 0, 0xFFFFFF));
+				fractol->color, fractol->max_iter, 0, 0xFFFFFF));
+	}
 }
