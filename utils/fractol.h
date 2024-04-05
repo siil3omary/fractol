@@ -37,6 +37,7 @@ typedef struct s_fractol
 	int		color;
 	void	*mlx;
 	void	*win;
+	int		set;
 }			fractol_s;
 
 void		julia(fractol_s *fractol, double cr, double ci);

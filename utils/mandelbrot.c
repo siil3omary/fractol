@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:10 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/30 21:47:32 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:38:03 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	draw_mandelbrot(fractol_s *fractol)
 }
 void	mandelbrot(fractol_s *fractol)
 {
+	fractol->set = 1;
 	fractol->mlx = mlx_init();
 	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Mandelbrot");
 	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);

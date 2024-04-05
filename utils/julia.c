@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:39 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/31 23:59:05 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:38:32 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	julia(fractol_s *fractol, double cr, double ci)
 {
 	fractol->mlx = mlx_init();
+	fractol->set = 2;
 	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Julia Set");
 	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);
 	fractol->img.addr = mlx_get_data_addr(fractol->img.img,
@@ -22,9 +23,6 @@ void	julia(fractol_s *fractol, double cr, double ci)
 											&fractol->img.line_length,
 											&fractol->img.endian);
 	init(fractol);
-    printf("%f\t %f" , cr, ci);
-	fractol->ci = ci;
-	fractol->cr = cr;
 	mlx_mouse_hook(fractol->win, mouse_hook, fractol);
 	mlx_hook(fractol->win, 2, 1L << 0, key_hook, fractol);
 	draw_julia(fractol);

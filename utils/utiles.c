@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 01:13:52 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/01 00:16:38 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:53:24 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	mouse_hook(int button, int x, int y, fractol_s *fractol)
 			- scalefractol(x, 0, WH, -2, 2);
 		fractol->shift_y -= (mouse_y * fractol->zoom / old_zoom)
 			- scalefractol(y, 0, WH, -2, 2);
-		draw_julia(fractol);
 	}
 	if (button == 5)
 	{
@@ -37,8 +36,8 @@ int	mouse_hook(int button, int x, int y, fractol_s *fractol)
 			- scalefractol(x, 0, WH, -2, 2);
 		fractol->shift_y -= (mouse_y * fractol->zoom / old_zoom)
 			- scalefractol(y, 0, WH, -2, 2);
-		draw_julia(fractol);
 	}
+	draw_julia(fractol);
 	return (0);
 }
 double	scalefractol(int value, int oldmin, int oldmax, int newmin, int newmax)
@@ -65,7 +64,7 @@ int	is_in_range(double zr, double zi)
 	return (0);
 }
 
-int	key_hook(int keycode, fractol_s *fractol)
+void	key_utils(fractol_s *fractol, int keycode)
 {
 	if (keycode == 53)
 		exit(0);
@@ -85,35 +84,34 @@ int	key_hook(int keycode, fractol_s *fractol)
 		fractol->shift_y += 0.1;
 	if (keycode == 125)
 		fractol->shift_y -= 0.1;
-	if (keycode == 48)
-		fractol->color -= 0x0000FF;
 	if (keycode == 24)
 		fractol->zoom *= 1.1;
 	if (keycode == 27)
 		fractol->zoom /= 1.1;
 	if (keycode == 49)
 		fractol->color += 0x0000FF;
+}
+int	key_hook(int keycode, fractol_s *fractol)
+{
+	if (keycode == 53 || keycode == 4 || keycode == 5 || keycode == 69
+		|| keycode == 18 || keycode == 78 || keycode == 19 || keycode == 123
+		|| keycode == 124 || keycode == 126 || keycode == 125 || keycode == 24
+		|| keycode == 27 || keycode == 49)
+		key_utils(fractol, keycode);
 	if (keycode == 15)
 		init(fractol);
-	if(keycode == 38){
-		fractol->name = "julia";
-		draw_julia(fractol);
-	}
-	if(keycode == 46){
-		fractol->name = "mandelbrot";
+	if (fractol->set == 1)
 		draw_mandelbrot(fractol);
-	}
-	if(keycode == 11){
-		fractol->name = "brurningship";
+	if (fractol->set == 2)
+		draw_julia(fractol);
+	if (fractol->set == 3)
 		draw_brurningship(fractol);
-	}
-		
-	printf("\n \t %d", keycode);
-
 	return (0);
 }
 void	init(fractol_s *fractol)
 {
+	fractol->ci = 0.6;
+	fractol->cr = -0.4;
 	fractol->zoom = 1;
 	fractol->color = 510;
 	fractol->max_iter = 380;
