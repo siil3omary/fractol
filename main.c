@@ -9,13 +9,13 @@ int	ft_isdigit(char c)
 	exit(EXIT_FAILURE);
 }
 
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
-    if (c == ' ' || (c >= 9 && c <= 13))
-    {
-        return(1);
-    }
-    return(0);
+	if (c == ' ' || (c >= 9 && c <= 13))
+	{
+		return (1);
+	}
+	return (0);
 }
 double	ft_atod(char *str)
 {

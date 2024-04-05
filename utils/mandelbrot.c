@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:10 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 21:38:03 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:08:14 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	drawit(fractol_s *fractol)
 		my_mlx_pixel_put(fractol, fractol->x, fractol->y, 0);
 	else
 		my_mlx_pixel_put(fractol, fractol->x, fractol->y, scalefractol(i * 1.01,
-				fractol->color, fractol->max_iter, 0, 0x0A75AD));
+					fractol->color, fractol->max_iter, 0, 0x0A75AD));
 }
 
 int	draw_mandelbrot(fractol_s *fractol)
@@ -61,8 +61,9 @@ void	mandelbrot(fractol_s *fractol)
 	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Mandelbrot");
 	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);
 	fractol->img.addr = mlx_get_data_addr(fractol->img.img,
-			&fractol->img.bits_per_pixel, &fractol->img.line_length,
-			&fractol->img.endian);
+											&fractol->img.bits_per_pixel,
+											&fractol->img.line_length,
+											&fractol->img.endian);
 	init(fractol);
 	mlx_mouse_hook(fractol->win, mouse_hook, fractol);
 	mlx_hook(fractol->win, 2, 1L << 0, key_hook, fractol);

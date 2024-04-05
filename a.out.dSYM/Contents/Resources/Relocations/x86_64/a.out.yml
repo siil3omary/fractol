@@ -28,5 +28,5 @@ relocations:
   - { offsetInCU: 0x225, offset: 0xB5C, size: 0x8, addend: 0x0, symName: _init, symObjAddr: 0x5E0, symBinAddr: 0x100008540, symSize: 0x80 }
   - { offsetInCU: 0x249, offset: 0xB80, size: 0x8, addend: 0x0, symName: _ft_isdigit, symObjAddr: 0x660, symBinAddr: 0x1000085C0, symSize: 0x40 }
   - { offsetInCU: 0x271, offset: 0xBA8, size: 0x8, addend: 0x0, symName: _ft_isspace, symObjAddr: 0x6A0, symBinAddr: 0x100008600, symSize: 0x40 }
-  - { offsetInCU: 0x299, offset: 0xBD0, size: 0x8, addend: 0x0, symName: _ft_atod, symObjAddr: 0x6E0, symBinAddr: 0x100008640, symSize: 0x23B }
+  - { offsetInCU: 0x299, offset: 0xBD0, size: 0x8, addend: 0x0, symName: _ft_atod, symObjAddr: 0x6E0, symBinAddr: 0x100008640, symSize: 0x23D }
 ...

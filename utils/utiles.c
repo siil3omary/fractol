@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 01:13:52 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 21:53:24 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:06:33 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,24 +146,19 @@ double	ft_atod(char *str)
 	sign = 1;
 	i = 0;
 	place = 0.1;
-	while (ft_isspace(str[i]))
-		i++;
+	while (ft_isspace(str[i++]))
+		;
 	if (str[i] == '-' || str[i] == '+')
 		if (str[i++] == '-')
 			sign = -1;
 	while (str[i] && str[i] != '.' && ft_isdigit(str[i]))
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
+		result = result * 10 + str[i++] - '0';
 	if (str[i] == '.')
 		i++;
 	while (str[i] && ft_isdigit(str[i]))
 	{
-		part = part + (str[i] - '0') * place;
+		part = part + (str[i++] - '0') * place;
 		place /= 10;
-		i++;
 	}
-	result += part;
-	return (sign * result);
+	return (sign * (result += part));
 }
