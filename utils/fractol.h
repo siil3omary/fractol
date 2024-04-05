@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/05 22:21:12 by aelomari          #+#    #+#             */
+/*   Updated: 2024/04/05 22:25:08 by aelomari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(FRACTOL_H)
 # define FRACTOL_H
 
@@ -38,29 +50,27 @@ typedef struct s_fractol
 	void	*mlx;
 	void	*win;
 	int		set;
-}			fractol_s;
+}			t_fractol;
 
-void		julia(fractol_s *fractol, double cr, double ci);
+void		julia(t_fractol *fractol, double cr, double ci);
 double		ft_atod(char *str);
 int			ft_isdigit(char c);
 int			ft_isspace(int c);
-int			draw_julia(fractol_s *fractol);
-void		brurningship(fractol_s *fractol);
-int			draw_brurningship(fractol_s *fractol);
+int			draw_julia(t_fractol *fractol);
+void		brurningship(t_fractol *fractol);
+int			draw_brurningship(t_fractol *fractol);
 double		scalefractol(int value, int oldmin, int oldmax, int newmin,
 				int newmax);
 int			ft_isdigit(char c);
-void		my_mlx_pixel_put(fractol_s *fractol, int x, int y, int color);
+void		my_mlx_pixel_put(t_fractol *fractol, int x, int y, int color);
 int			is_in_range(double zr, double zi);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-int			mouse_hook(int button, int x, int y, fractol_s *fractol);
-void		mandelbrot(fractol_s *fractol);
-void		julia(fractol_s *fractol, double cr, double ci);
-int			key_hook(int keycode, fractol_s *vars);
-static void	drawit(fractol_s *fractol);
-int			draw_mandelbrot(fractol_s *fractol);
-void		init(fractol_s *fractol);
-double		scalefractol(int value, int oldmin, int oldmax, int newmin,
-				int newmax);
+int			mouse_hook(int button, int x, int y, t_fractol *fractol);
+void		mandelbrot(t_fractol *fractol);
+void		julia(t_fractol *fractol, double cr, double ci);
+int			key_hook(int keycode, t_fractol *vars);
+static void	drawit(t_fractol *fractol);
+int			draw_mandelbrot(t_fractol *fractol);
+void		init(t_fractol *fractol);
 
 #endif // FRACTOL_H

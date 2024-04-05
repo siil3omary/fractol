@@ -6,13 +6,13 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:10 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 22:08:14 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:22:49 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	drawit(fractol_s *fractol)
+static void	drawit(t_fractol *fractol)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ static void	drawit(fractol_s *fractol)
 					fractol->color, fractol->max_iter, 0, 0x0A75AD));
 }
 
-int	draw_mandelbrot(fractol_s *fractol)
+int	draw_mandelbrot(t_fractol *fractol)
 {
 	fractol->x = 0;
 	while (fractol->x < WH)
@@ -54,7 +54,7 @@ int	draw_mandelbrot(fractol_s *fractol)
 	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img, 0, 0);
 	return (0);
 }
-void	mandelbrot(fractol_s *fractol)
+void	mandelbrot(t_fractol *fractol)
 {
 	fractol->set = 1;
 	fractol->mlx = mlx_init();

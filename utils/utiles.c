@@ -6,13 +6,13 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 01:13:52 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 22:06:33 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:22:49 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	mouse_hook(int button, int x, int y, fractol_s *fractol)
+int	mouse_hook(int button, int x, int y, t_fractol *fractol)
 {
 	double	mouse_x;
 	double	mouse_y;
@@ -40,6 +40,7 @@ int	mouse_hook(int button, int x, int y, fractol_s *fractol)
 	draw_julia(fractol);
 	return (0);
 }
+
 double	scalefractol(int value, int oldmin, int oldmax, int newmin, int newmax)
 {
 	double	new;
@@ -49,7 +50,7 @@ double	scalefractol(int value, int oldmin, int oldmax, int newmin, int newmax)
 	return (new);
 }
 
-void	my_mlx_pixel_put(fractol_s *fractol, int x, int y, int color)
+void	my_mlx_pixel_put(t_fractol *fractol, int x, int y, int color)
 {
 	char	*dst;
 
@@ -57,6 +58,7 @@ void	my_mlx_pixel_put(fractol_s *fractol, int x, int y, int color)
 			* (fractol->img.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
 int	is_in_range(double zr, double zi)
 {
 	if (((zr * zr) + (zi * zi)) <= 4)
@@ -64,7 +66,7 @@ int	is_in_range(double zr, double zi)
 	return (0);
 }
 
-void	key_utils(fractol_s *fractol, int keycode)
+void	key_utils(t_fractol *fractol, int keycode)
 {
 	if (keycode == 53)
 		exit(0);
@@ -91,7 +93,8 @@ void	key_utils(fractol_s *fractol, int keycode)
 	if (keycode == 49)
 		fractol->color += 0x0000FF;
 }
-int	key_hook(int keycode, fractol_s *fractol)
+
+int	key_hook(int keycode, t_fractol *fractol)
 {
 	if (keycode == 53 || keycode == 4 || keycode == 5 || keycode == 69
 		|| keycode == 18 || keycode == 78 || keycode == 19 || keycode == 123
@@ -108,7 +111,8 @@ int	key_hook(int keycode, fractol_s *fractol)
 		draw_brurningship(fractol);
 	return (0);
 }
-void	init(fractol_s *fractol)
+
+void	init(t_fractol *fractol)
 {
 	fractol->ci = 0.6;
 	fractol->cr = -0.4;
@@ -118,12 +122,14 @@ void	init(fractol_s *fractol)
 	fractol->shift_x = 0.0;
 	fractol->shift_y = 0.0;
 }
+
 int	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	exit(EXIT_FAILURE);
 }
+
 int	ft_isspace(int c)
 {
 	if (c == ' ' || (c >= 9 && c <= 13))

@@ -6,13 +6,13 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:39 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 21:38:32 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:22:49 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia(fractol_s *fractol, double cr, double ci)
+void	julia(t_fractol *fractol, double cr, double ci)
 {
 	fractol->mlx = mlx_init();
 	fractol->set = 2;
@@ -29,7 +29,7 @@ void	julia(fractol_s *fractol, double cr, double ci)
 	mlx_loop(fractol->mlx);
 }
 
-int	draw_julia(fractol_s *fractol)
+int	draw_julia(t_fractol *fractol)
 {
 	fractol->x = 0;
 	while (fractol->x < WH)
@@ -46,7 +46,7 @@ int	draw_julia(fractol_s *fractol)
 	return (0);
 }
 
-static void	drawit(fractol_s *fractol)
+static void	drawit(t_fractol *fractol)
 {
 	int i;
 
