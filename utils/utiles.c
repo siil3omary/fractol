@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 01:13:52 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 22:22:49 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:10:11 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,10 @@ void	key_utils(t_fractol *fractol, int keycode)
 {
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 4)
-		fractol->zoom *= 1.1;
-	if (keycode == 5)
-		fractol->zoom /= 1.1;
 	if (keycode == 69 || keycode == 18)
-		fractol->max_iter += 10;
+		fractol->max_iter += 100;
 	if (keycode == 78 || keycode == 19)
-		fractol->max_iter -= 10;
+		fractol->max_iter -= 100;
 	if (keycode == 123)
 		fractol->shift_x += 0.1;
 	if (keycode == 124)
@@ -90,23 +86,51 @@ void	key_utils(t_fractol *fractol, int keycode)
 		fractol->zoom *= 1.1;
 	if (keycode == 27)
 		fractol->zoom /= 1.1;
-	if (keycode == 49)
-		fractol->color += 0x0000FF;
+	if (keycode == 11)
+		fractol->set = 3;
+	if (keycode == 38)
+		fractol->set = 2;
+	if (keycode == 46)
+		fractol->set = 1;
+}
+
+int	string_put(t_fractol *fractol)
+{
+	mlx_clear_window(fractol->mlx, fractol->win);
+	mlx_string_put(fractol->mlx, fractol->win, 10, 10, 0xFFFFFF,
+		"Press 1 for Mandelbrot");
+	mlx_string_put(fractol->mlx, fractol->win, 10, 30, 0xFFFFFF,
+		"Press 2 for Julia");
+	mlx_string_put(fractol->mlx, fractol->win, 10, 50, 0xFFFFFF,
+		"Press 3 for Brurningship");
+	mlx_string_put(fractol->mlx, fractol->win, 10, 150, 0xFFFFFF,
+		"Press ESC for exit");
+	mlx_string_put(fractol->mlx, fractol->win, 10, 90, 0xFFFFFF,
+		"Press + or - for zoom");
+	mlx_string_put(fractol->mlx, fractol->win, 10, 110, 0xFFFFFF,
+		"Press arrow keys for shift");
+	mlx_string_put(fractol->mlx, fractol->win, 10, 70, 0xFFFFFF,
+		"Press ESPACE for color");
+	return (0);
 }
 
 int	key_hook(int keycode, t_fractol *fractol)
 {
-	if (keycode == 53 || keycode == 4 || keycode == 5 || keycode == 69
-		|| keycode == 18 || keycode == 78 || keycode == 19 || keycode == 123
-		|| keycode == 124 || keycode == 126 || keycode == 125 || keycode == 24
-		|| keycode == 27 || keycode == 49)
+	if (keycode)
 		key_utils(fractol, keycode);
+	if(keycode == 49)
+		fractol->color += 255;
 	if (keycode == 15)
 		init(fractol);
+	if (keycode == 4)
+		return (string_put(fractol));
+	printf("color  = %x\niter = %d\n", 25, keycode);
 	if (fractol->set == 1)
 		draw_mandelbrot(fractol);
 	if (fractol->set == 2)
+	{
 		draw_julia(fractol);
+	}
 	if (fractol->set == 3)
 		draw_brurningship(fractol);
 	return (0);
@@ -114,11 +138,9 @@ int	key_hook(int keycode, t_fractol *fractol)
 
 void	init(t_fractol *fractol)
 {
-	fractol->ci = 0.6;
-	fractol->cr = -0.4;
 	fractol->zoom = 1;
-	fractol->color = 510;
-	fractol->max_iter = 380;
+	fractol->color = 11220;
+	fractol->max_iter = 340;
 	fractol->shift_x = 0.0;
 	fractol->shift_y = 0.0;
 }

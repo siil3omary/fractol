@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:21:12 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 22:25:08 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:09:08 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int			mouse_hook(int button, int x, int y, t_fractol *fractol);
 void		mandelbrot(t_fractol *fractol);
 void		julia(t_fractol *fractol, double cr, double ci);
 int			key_hook(int keycode, t_fractol *vars);
-static void	drawit(t_fractol *fractol);
 int			draw_mandelbrot(t_fractol *fractol);
 void		init(t_fractol *fractol);
 
