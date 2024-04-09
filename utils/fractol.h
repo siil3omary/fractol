@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:21:12 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/07 18:09:08 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:55:55 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ int			ft_isspace(int c);
 int			draw_julia(t_fractol *fractol);
 void		brurningship(t_fractol *fractol);
 int			draw_brurningship(t_fractol *fractol);
-double		scalefractol(int value, int oldmin, int oldmax, int newmin,
-				int newmax);
+double		scalefractol(int value, int oldmin, int newmin, int newmax);
 int			ft_isdigit(char c);
 void		my_mlx_pixel_put(t_fractol *fractol, int x, int y, int color);
 int			is_in_range(double zr, double zi);

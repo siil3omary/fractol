@@ -19,8 +19,6 @@ SRCS=fractol.c \
 
 OBJS=$(SRCS:.c=.o)
 
-.PHONY: all clean fclean re
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -39,3 +37,5 @@ fclean: clean
 	@echo "$(RED)Removing ${CLR_RMV}$(NAME) ${RED}done${CLR_RMV}"
 
 re: fclean all
+
+.PHONY: all clean fclean re

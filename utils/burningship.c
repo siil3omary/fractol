@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 02:40:53 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/05 22:22:49 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:00:13 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	drawit(t_fractol *fractol)
 	i = 0;
 	fractol->zr = 0.0;
 	fractol->zi = 0.0;
-	fractol->cr = (scalefractol(fractol->x, 0, 800, -2, 2) / fractol->zoom)
+	fractol->cr = (scalefractol(fractol->x, 0, -2, 2) / fractol->zoom)
 		+ fractol->shift_x;
-	fractol->ci = (scalefractol(fractol->y, 0, 800, -2, 2) / fractol->zoom)
+	fractol->ci = (scalefractol(fractol->y, 0, -2, 2) / fractol->zoom)
 		+ fractol->shift_y;
 	while (i < fractol->max_iter && is_in_range(fractol->zr, fractol->zi))
 	{
@@ -34,8 +34,8 @@ static void	drawit(t_fractol *fractol)
 	if (i == fractol->max_iter)
 		my_mlx_pixel_put(fractol, fractol->x, fractol->y, 0);
 	else
-		my_mlx_pixel_put(fractol, fractol->x, fractol->y, scalefractol(i * 1.01,
-				fractol->color, fractol->max_iter, 0, 0x0A75AD));
+		my_mlx_pixel_put(fractol, fractol->x, fractol->y, scalefractol(i,
+				fractol->color, i, 0xFFFFFF));
 }
 
 int	draw_brurningship(t_fractol *fractol)
