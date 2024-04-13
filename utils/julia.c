@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 00:23:39 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/09 19:57:00 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 00:02:53 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	drawit(t_fractol *fractol)
 	int	i;
 
 	i = 0;
-	fractol->zr = (scalefractol(fractol->x, 0, -2, 2) / fractol->zoom)
-		+ fractol->shift_x;
-	fractol->zi = (scalefractol(fractol->y, 0, -2, 2) / fractol->zoom)
-		+ fractol->shift_y;
+	fractol->zr = (scalefractol(fractol->x, 0, -2, 2)) + fractol->shift_x
+		/ fractol->zoom;
+	fractol->zi = (scalefractol(fractol->y, 0, -2, 2)) + fractol->shift_y
+		/ fractol->zoom;
 	while (i < fractol->max_iter && is_in_range(fractol->zr, fractol->zi))
 	{
 		fractol->tmp = ((fractol->zr * fractol->zr) - (fractol->zi
@@ -64,8 +64,7 @@ void	julia(t_fractol *fractol, double cr, double ci)
 	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Julia Set");
 	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);
 	fractol->img.addr = mlx_get_data_addr(fractol->img.img,
-			&fractol->img.bits_per_pixel,
-			&fractol->img.line_length,
+			&fractol->img.bits_per_pixel, &fractol->img.line_length,
 			&fractol->img.endian);
 	init(fractol);
 	fractol->ci = ci;

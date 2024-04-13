@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 02:40:53 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/09 22:16:07 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 00:02:38 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	brurningship(t_fractol *fractol)
 	fractol->win = mlx_new_window(fractol->mlx, WH, WH, "Mandelbrot");
 	fractol->img.img = mlx_new_image(fractol->mlx, WH, WH);
 	fractol->img.addr = mlx_get_data_addr(fractol->img.img,
-			&fractol->img.bits_per_pixel,
-			&fractol->img.line_length,
+			&fractol->img.bits_per_pixel, &fractol->img.line_length,
 			&fractol->img.endian);
 	init(fractol);
 	mlx_mouse_hook(fractol->win, mouse_hook, fractol);
