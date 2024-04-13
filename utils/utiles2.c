@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 00:05:51 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/13 00:42:43 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:23:39 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
+	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
@@ -44,21 +45,24 @@ double	ft_atod(t_fractol *fractol, char *str)
 	fractol->atod.sign = 1.0;
 	fractol->atod.i = 0;
 	fractol->atod.place = 0.1;
-	while (ft_isspace(str[i++]))
+	while (ft_isspace(str[fractol->atod.i++]))
 		;
-	if (str[--i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			sign = -1;
-	if (!str[i])
+	if (str[--fractol->atod.i] == '-' || str[fractol->atod.i] == '+')
+		if (str[fractol->atod.i++] == '-')
+			fractol->atod.sign = -1;
+	if (!str[fractol->atod.i])
 		exit(EXIT_FAILURE);
-	while (str[i] && str[i] != '.' && ft_isdigit(str[i]))
-		result = result * 10 + str[i++] - '0';
-	if (str[i] == '.')
-		i++;
-	while (str[i] && ft_isdigit(str[i]))
+	while (str[fractol->atod.i] && str[fractol->atod.i] != '.'
+		&& ft_isdigit(str[fractol->atod.i]))
+		fractol->atod.result = fractol->atod.result * 10
+			+ str[fractol->atod.i++] - '0';
+	if (str[fractol->atod.i] == '.')
+		fractol->atod.i++;
+	while (str[fractol->atod.i] && ft_isdigit(str[fractol->atod.i]))
 	{
-		part = part + (str[i++] - '0') * place;
-		place /= 10;
+		fractol->atod.part = fractol->atod.part + (str[fractol->atod.i++] - '0')
+			* fractol->atod.place;
+		fractol->atod.place /= 10;
 	}
-	return (sign * (result += part));
+	return (fractol->atod.sign * (fractol->atod.result += fractol->atod.part));
 }

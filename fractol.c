@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 23:45:48 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/13 00:40:13 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:26:08 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,11 @@ int	main(int ac, char **av)
 	}
 	else if (ac == 2 && !ft_strncmp(av[1], "burningship", 11))
 		brurningship(&vars);
+	else
+	{
+		write(2, "\033[0;31mUsage: \e[0m\n", 19);
+		write(2, " ./fractol [mandelbrot | julia | burningship]", 46);
+		exit(EXIT_FAILURE);
+	}
 	return (0);
 }

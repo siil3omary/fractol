@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:21:12 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/13 00:42:58 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:26:40 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # define WH 800
 
