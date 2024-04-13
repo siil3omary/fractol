@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:21:12 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/09 19:55:55 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 00:28:03 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_fractol
 }			t_fractol;
 
 void		julia(t_fractol *fractol, double cr, double ci);
+int			string_put(t_fractol *fractol);
+void		key_utils2(t_fractol *fractol, int keycode);
 double		ft_atod(char *str);
 int			ft_isdigit(char c);
 int			ft_isspace(int c);

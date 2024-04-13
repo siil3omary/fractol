@@ -12,6 +12,8 @@ CYAN 		:= \033[1;36m
 
 SRCS=fractol.c \
      utils/utiles.c \
+     utils/utiles3.c \
+     utils/utiles2.c \
      utils/mandelbrot.c \
      utils/julia.c \
      utils/burningship.c \
