@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:21:12 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/13 00:28:03 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 00:42:58 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,18 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }			t_img;
-
+typedef struct s_atod
+{
+	double	result;
+	double	part;
+	double	sign;
+	int		i;
+	double	place;
+}			t_atod;
 typedef struct s_fractol
 {
 	t_img	img;
+	t_atod	atod;
 	double	zoom;
 	double	shift_y;
 	double	shift_x;
@@ -55,7 +63,7 @@ typedef struct s_fractol
 void		julia(t_fractol *fractol, double cr, double ci);
 int			string_put(t_fractol *fractol);
 void		key_utils2(t_fractol *fractol, int keycode);
-double		ft_atod(char *str);
+double		ft_atod(t_fractol *fractol, char *str);
 int			ft_isdigit(char c);
 int			ft_isspace(int c);
 int			draw_julia(t_fractol *fractol);

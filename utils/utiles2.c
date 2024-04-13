@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 00:05:51 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/13 00:10:01 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 00:42:43 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,13 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-double	ft_atod(char *str)
+double	ft_atod(t_fractol *fractol, char *str)
 {
-	double	result;
-	double	part;
-	double	sign;
-	int		i;
-	double	place;
-
-	result = 0.0;
-	part = 0.0;
-	sign = 1;
-	i = 0;
-	place = 0.1;
+	fractol->atod.result = 0.0;
+	fractol->atod.part = 0.0;
+	fractol->atod.sign = 1.0;
+	fractol->atod.i = 0;
+	fractol->atod.place = 0.1;
 	while (ft_isspace(str[i++]))
 		;
 	if (str[--i] == '-' || str[i] == '+')
